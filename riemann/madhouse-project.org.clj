@@ -21,8 +21,8 @@
 
    "memory/memory-buffered Gb" {}
    "memory/memory-cached Gb" {}
-   "memory/memory-free Gb" {:warning 0.15
-                            :critical 0.1
+   "memory/memory-free Gb" {:warning 0.10
+                            :critical 0.05
                             :invert true}
    "memory/memory-used Gb" {}
 
@@ -34,8 +34,7 @@
 
    "uptime/uptime" {:warning 1 :critical 0 :invert true}
 
-   "df-boot/df_complex-free Gb" {:warning 0.1 :critical 0.05 :invert true}
-   "df-root/df_complex-free Gb" {:warning 20 :critical 10 :invert true}
+   "df-root/df_complex-free Gb" {:warning 5 :critical 1 :invert true}
 
    "interface-wlan0/if_octets/rx Kb" {:warning 768 :critical 1024}
    "interface-wlan0/if_octets/tx Kb" {:warning 768 :critical 1024}
