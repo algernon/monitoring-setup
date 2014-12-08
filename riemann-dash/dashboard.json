@@ -1,0 +1,268 @@
+{
+  "server": "10.243.42.34:5556",
+  "server_type": "ws",
+  "workspaces": [
+    {
+      "name": "Health",
+      "view": {
+        "type": "Balloon",
+        "weight": 1,
+        "id": "e75428c8873ba25e8d61ca2e9e67ead6b8739dd3",
+        "version": 21,
+        "child": {
+          "type": "VStack",
+          "weight": 1,
+          "id": "fb909ab87f3a3be73956c792d7bebdca0d0c4669",
+          "version": 21,
+          "children": [
+            {
+              "type": "HStack",
+              "weight": 1,
+              "id": "1e2dd3940959d463326a0cb8390fa04e53d0ec30",
+              "version": 16,
+              "children": [
+                {
+                  "type": "VStack",
+                  "weight": 1,
+                  "id": "780c14c4f3c34ddf6b12c1e905431796bf8f6fb0",
+                  "version": 9,
+                  "children": [
+                    {
+                      "type": "Grid",
+                      "weight": 1,
+                      "id": "34c6bd3832803793e5e1ec90238d4891160af337",
+                      "version": 6,
+                      "title": "CPU",
+                      "query": "service ~= \"cpu-average/cpu-(user|nice|system|idle|steal)\"",
+                      "max": "",
+                      "rows": "service",
+                      "cols": "host",
+                      "row_sort": "lexical",
+                      "col_sort": "lexical"
+                    },
+                    {
+                      "type": "Grid",
+                      "weight": 1,
+                      "id": "614f52d0b6de89b2307ff882c8ca0a61652d8161",
+                      "version": 3,
+                      "title": "Processes",
+                      "query": "service =~ \"processes/ps_state-%\"",
+                      "max": "",
+                      "rows": "service",
+                      "cols": "host",
+                      "row_sort": "lexical",
+                      "col_sort": "lexical"
+                    }
+                  ]
+                },
+                {
+                  "type": "VStack",
+                  "weight": 1,
+                  "id": "c06e13702b2bec0015153a4f10978c2d4b2353c1",
+                  "version": 2,
+                  "children": [
+                    {
+                      "type": "Grid",
+                      "weight": 1,
+                      "id": "a3875c0e331a8598c424763f1f4e2eee533b0481",
+                      "version": 2,
+                      "title": "Load",
+                      "query": "service =~ \"load/load/%\"",
+                      "max": "",
+                      "rows": "service",
+                      "cols": "host",
+                      "row_sort": "lexical",
+                      "col_sort": "lexical"
+                    },
+                    {
+                      "type": "Grid",
+                      "weight": 1,
+                      "id": "8a7a7412d9c05437f69543723ca14c89357dbf91",
+                      "version": 1,
+                      "title": "Swap",
+                      "query": "service =~ \"swap/% Gb\" or service =~ \"swap/%io%\"",
+                      "max": "",
+                      "rows": "service",
+                      "cols": "host",
+                      "row_sort": "lexical",
+                      "col_sort": "lexical"
+                    }
+                  ]
+                },
+                {
+                  "type": "VStack",
+                  "weight": 1,
+                  "id": "b835659a75bf27d2eeb9464d4026c9d5406fd28f",
+                  "version": 4,
+                  "children": [
+                    {
+                      "type": "Grid",
+                      "weight": 1,
+                      "id": "cdcf93cced9e82533832dc9f9b9868c5965a56c3",
+                      "version": 2,
+                      "title": "Memory",
+                      "query": "service =~ \"memory/% Gb\"",
+                      "max": "",
+                      "rows": "service",
+                      "cols": "host",
+                      "row_sort": "lexical",
+                      "col_sort": "lexical"
+                    },
+                    {
+                      "type": "Grid",
+                      "weight": 1,
+                      "id": "62f666ee840503b51a368f5ee91ce542df7b34d2",
+                      "version": 2,
+                      "title": "Disk",
+                      "query": "service =~ \"df-%/df_complex-free Gb\" and not (service =~ \"df-boot/%\" or service =~ \"%docker%\")",
+                      "max": "",
+                      "rows": "host",
+                      "cols": "service",
+                      "row_sort": "lexical",
+                      "col_sort": "lexical"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "HStack",
+              "weight": 1,
+              "id": "ed454080589593d9054f8a923cd6ec384b521f70",
+              "version": 5,
+              "children": [
+                {
+                  "type": "Flot",
+                  "weight": 1,
+                  "id": "36d456a789a2cf6e33ecdb24e99eed8aee536374",
+                  "version": 2,
+                  "title": "CPU over time",
+                  "query": "service ~= \"cpu-average/cpu-(user|system|idle)\"",
+                  "max": null,
+                  "timeRange": 900,
+                  "graphType": "line",
+                  "stackMode": "false"
+                },
+                {
+                  "type": "Flot",
+                  "weight": 1,
+                  "id": "cfd5b5f863d9e899731f9d3dcff22fbbe65b66f5",
+                  "version": 1,
+                  "title": "Load over time",
+                  "query": "service =~ \"load/load/midterm\"",
+                  "max": null,
+                  "timeRange": 900,
+                  "graphType": "line",
+                  "stackMode": "false"
+                },
+                {
+                  "type": "Flot",
+                  "weight": 1,
+                  "id": "27d4db337a9518b2d510d607d9c9a0bcc1bb5f1b",
+                  "version": 2,
+                  "title": "Memory over time",
+                  "query": "service ~= \"memory/memory-(free|used) Gb\"",
+                  "max": null,
+                  "timeRange": 900,
+                  "graphType": "line",
+                  "stackMode": "false"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "id": "2c8d2579104b0f92ea234eca99aa4302a5f13a28"
+    },
+    {
+      "name": "Network",
+      "view": {
+        "type": "Balloon",
+        "weight": 1,
+        "id": "6219a8464c28e04dc4ea9cd0844d5b08eebab101",
+        "version": 18,
+        "child": {
+          "type": "VStack",
+          "weight": 1,
+          "id": "1b27532b9e7add41f8a5e4387735b55b54c373c3",
+          "version": 18,
+          "children": [
+            {
+              "type": "HStack",
+              "weight": 2,
+              "id": "3f2622eda71e24f3b93251cc03455e269da40121",
+              "version": 3,
+              "children": [
+                {
+                  "type": "Grid",
+                  "weight": 1,
+                  "id": "daf5a0aab5f3a83315686892e554f409080301df",
+                  "version": 9,
+                  "title": "Network (servers)",
+                  "query": "service =~ \"interface-%/if_octets/% Kb\" and not service =~ \"%docker%\" and metric > 0 and not service =~ \"%wlan%\"",
+                  "max": "",
+                  "rows": "host",
+                  "cols": "service",
+                  "row_sort": "lexical",
+                  "col_sort": "lexical"
+                },
+                {
+                  "type": "Grid",
+                  "weight": 1,
+                  "id": "b21927d5d42a6b6673fb3f70cd2441cce559cfb4",
+                  "version": 1,
+                  "title": "Network (laptops)",
+                  "query": "service =~ \"interface-%/if_octets/% Kb\" and metric > 0 and service =~ \"%wlan%\"",
+                  "max": "",
+                  "rows": "",
+                  "cols": "",
+                  "row_sort": "lexical",
+                  "col_sort": "lexical"
+                }
+              ]
+            },
+            {
+              "type": "HStack",
+              "weight": 4,
+              "id": "92f275902def80392862e915e8824fd1aa40ea12",
+              "version": 5,
+              "children": [
+                {
+                  "type": "Flot",
+                  "weight": 1,
+                  "id": "361d4f8c465e75fbcd4eaafa0a00e819096ba2ba",
+                  "version": 5,
+                  "title": "Network Received",
+                  "query": "service =~ \"interface-%/if_octets/rx Kb\" and not service =~ \"%docker%\" and metric > 0",
+                  "max": null,
+                  "timeRange": 900,
+                  "graphType": "line",
+                  "stackMode": "false"
+                },
+                {
+                  "type": "Flot",
+                  "weight": 1,
+                  "id": "b9ab9ecce4199873a12b4b676a2ec5cc1d517ac9",
+                  "version": 3,
+                  "title": "Network Transmitted",
+                  "query": "service =~ \"interface-%/if_octets/tx Kb\" and not service =~ \"%docker%\" and metric > 0",
+                  "max": null,
+                  "timeRange": 900,
+                  "graphType": "line",
+                  "stackMode": "false"
+                }
+              ]
+            },
+            {
+              "type": "View",
+              "weight": 1,
+              "id": "06de2e5a504fdf31c4e44229268d816f7301d712",
+              "version": 0
+            }
+          ]
+        }
+      },
+      "id": "8a997a19dd2a8341f3a97a4c2051fea172d5e5e3"
+    }
+  ]
+}
