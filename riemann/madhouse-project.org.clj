@@ -38,6 +38,8 @@
 
    "interface-wlan0/if_octets/rx Kb" {:warning 768 :critical 1024}
    "interface-wlan0/if_octets/tx Kb" {:warning 768 :critical 1024}
+   "interface-eth0/if_octets/rx Kb" {}
+   "interface-eth0/if_octets/tx Kb" {}
    })
 
 ;;(logging/init :file "/srv/riemann/log/riemann.log")
