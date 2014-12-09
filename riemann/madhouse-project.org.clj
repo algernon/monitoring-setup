@@ -41,7 +41,7 @@
    "interface-eth0/if_octets/rx Kb" {}
    "interface-eth0/if_octets/tx Kb" {}
 
-   "tail-auth/counter-sshd-invalid-user" {:warning 0 :critical 10}
+   "tail-auth/counter-sshd-invalid_user" {:warning 0 :critical 10}
    "tail-auth/counter-sshd-successful-logins" {}
    })
 
