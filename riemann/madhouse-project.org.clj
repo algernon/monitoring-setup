@@ -40,6 +40,9 @@
    "interface-wlan0/if_octets/tx Kb" {:warning 768 :critical 1024}
    "interface-eth0/if_octets/rx Kb" {}
    "interface-eth0/if_octets/tx Kb" {}
+
+   "tail-auth/counter-sshd-invalid-user" {:warning 0 :critical 10}
+   "tail-auth/counter-sshd-successful-logins" {}
    })
 
 ;;(logging/init :file "/srv/riemann/log/riemann.log")
