@@ -25,27 +25,27 @@
    "processes/ps_state-stopped" {:warning 1 :critical 8}
    "processes/ps_state-zombies" {:warning 0 :critical 8}
 
-   "memory/memory-buffered Gb" {}
-   "memory/memory-cached Gb" {}
-   "memory/memory-free Gb" {:warning 0.10
-                            :critical 0.05
-                            :invert true}
-   "memory/memory-used Gb" {}
+   "memory/memory-buffered" {}
+   "memory/memory-cached" {}
+   "memory/memory-free" {:warning 0.10
+                         :critical 0.05
+                         :invert true}
+   "memory/memory-used" {}
 
-   "swap/swap-cached Gb" {}
-   "swap/swap-free Gb" {}
-   "swap/swap-used Gb" {}
+   "swap/swap-cached" {}
+   "swap/swap-free" {}
+   "swap/swap-used" {}
    "swap/swap_io-in" {}
    "swap/swap_io-out" {}
 
    "uptime/uptime" {:warning 1 :critical 0 :invert true}
 
-   "df-root/df_complex-free Gb" {:warning 5 :critical 1 :invert true}
+   "df-root/df_complex-free" {:warning 5 :critical 1 :invert true}
 
-   "interface-wlan0/if_octets/rx Kb" {:warning 768 :critical 1024}
-   "interface-wlan0/if_octets/tx Kb" {:warning 768 :critical 1024}
-   "interface-eth0/if_octets/rx Kb" {}
-   "interface-eth0/if_octets/tx Kb" {}
+   "interface-wlan0/if_octets/rx" {:warning 768 :critical 1024}
+   "interface-wlan0/if_octets/tx" {:warning 768 :critical 1024}
+   "interface-eth0/if_octets/rx" {}
+   "interface-eth0/if_octets/tx" {}
 
    "tail-auth/counter-sshd-invalid_user" {:warning 0 :critical 10}
    "tail-auth/counter-sshd-successful-logins" {}
@@ -66,26 +66,5 @@
    (default :ttl 10
      (expired #(prn "Expired" %))
      (where (not (service #"^riemann "))
-            (where (= (:plugin event) "df")
-                   (adjust [:service str " Gb"]
-                           (scale (/ 1 1024 1024 1024)
-                                  (smap (threshold-check thresholds)
-                                        index))))
-            (where (= (:plugin event) "interface")
-                   (adjust [:service str " Kb"]
-                           (scale (/ 1 1024)
-                                  (smap (threshold-check thresholds)
-                                        index))))
-            (where (= (:plugin event) "memory")
-                   (adjust [:service str " Gb"]
-                           (scale (/ 1 1024 1024 1024)
-                                  (smap (threshold-check thresholds)
-                                        index))))
-            (where (and (= (:plugin event) "swap")
-                        (= (:ds_type event) "gauge"))
-                   (adjust [:service str " Gb"]
-                           (scale (/ 1 1024 1024 1024)
-                                  (smap (threshold-check thresholds)
-                                        index))))
             (smap (threshold-check thresholds)
                   index)))))
