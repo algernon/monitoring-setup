@@ -59,11 +59,11 @@
   (ws-server  :host host)
   (repl-server :host host))
 
-(periodically-expire 1)
+(periodically-expire 5)
 
 (let [index (tap :index (index))]
   (streams
-   (default :ttl 3
+   (default :ttl 10
      (expired #(prn "Expired" %))
      (where (not (service #"^riemann "))
             (where (= (:plugin event) "df")
