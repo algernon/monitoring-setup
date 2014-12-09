@@ -40,7 +40,7 @@
 
    "uptime/uptime" {:warning 1 :critical 0 :invert true}
 
-   "df-root/df_complex-free" {:warning 5 :critical 1 :invert true}
+   "df-root/percent_bytes-free" {:warning 10 :critical 6 :invert true}
 
    "interface-wlan0/if_octets/rx" {:warning 768 :critical 1024}
    "interface-wlan0/if_octets/tx" {:warning 768 :critical 1024}

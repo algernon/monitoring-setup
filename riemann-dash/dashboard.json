@@ -8,18 +8,18 @@
         "type": "Balloon",
         "weight": 1,
         "id": "e75428c8873ba25e8d61ca2e9e67ead6b8739dd3",
-        "version": 25,
+        "version": 28,
         "child": {
           "type": "VStack",
           "weight": 1,
           "id": "fb909ab87f3a3be73956c792d7bebdca0d0c4669",
-          "version": 25,
+          "version": 28,
           "children": [
             {
               "type": "HStack",
               "weight": 1,
               "id": "1e2dd3940959d463326a0cb8390fa04e53d0ec30",
-              "version": 19,
+              "version": 22,
               "children": [
                 {
                   "type": "VStack",
@@ -93,7 +93,7 @@
                   "type": "VStack",
                   "weight": 1,
                   "id": "b835659a75bf27d2eeb9464d4026c9d5406fd28f",
-                  "version": 6,
+                  "version": 9,
                   "children": [
                     {
                       "type": "Grid",
@@ -112,9 +112,9 @@
                       "type": "Grid",
                       "weight": 1,
                       "id": "62f666ee840503b51a368f5ee91ce542df7b34d2",
-                      "version": 3,
+                      "version": 6,
                       "title": "Disk",
-                      "query": "service =~ \"df-%/df_complex-free\" and not (service =~ \"df-boot/%\" or service =~ \"%docker%\")",
+                      "query": "service =~ \"df-%/percent_bytes-free\" and not (service =~ \"df-boot/%\" or service =~ \"%docker%\")",
                       "max": "",
                       "rows": "host",
                       "cols": "service",
