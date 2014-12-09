@@ -263,6 +263,91 @@
         }
       },
       "id": "8a997a19dd2a8341f3a97a4c2051fea172d5e5e3"
+    },
+    {
+      "name": "Services",
+      "view": {
+        "type": "Balloon",
+        "weight": 1,
+        "id": "9f3884b88d607a8a138edc2b9109fc2723f639fe",
+        "version": 6,
+        "child": {
+          "type": "VStack",
+          "weight": 1,
+          "id": "37aab5bfb3d60d2ffbd803c30a93214f862cb7db",
+          "version": 6,
+          "children": [
+            {
+              "type": "HStack",
+              "weight": 1,
+              "id": "4c1a10bddab37b16770ba4c1743d55503dbd876c",
+              "version": 6,
+              "children": [
+                {
+                  "type": "VStack",
+                  "weight": 1,
+                  "id": "3234b983bb7dafad4daf6a6a9631e7013b4ea692",
+                  "version": 2,
+                  "children": [
+                    {
+                      "type": "Flot",
+                      "weight": 1,
+                      "id": "6c907d3a0273c656eb059c3066ddbe58c5875b2e",
+                      "version": 2,
+                      "title": "SSH logins",
+                      "query": "service =~ \"tail-auth/counter-sshd-%\"",
+                      "max": null,
+                      "timeRange": 900,
+                      "graphType": "line",
+                      "stackMode": "false"
+                    }
+                  ]
+                },
+                {
+                  "type": "VStack",
+                  "weight": 1,
+                  "id": "b4cbdb42f807682b293e49de5b7d5e4843d14d41",
+                  "version": 4,
+                  "children": [
+                    {
+                      "type": "Grid",
+                      "weight": 1,
+                      "id": "f4a5c78fc997ce7047efd974014a2e0fce58399d",
+                      "version": 3,
+                      "title": "sshd",
+                      "query": "service =~ \"tail-auth/counter-sshd-%\"",
+                      "max": "",
+                      "rows": "service",
+                      "cols": "host",
+                      "row_sort": "lexical",
+                      "col_sort": "lexical"
+                    }
+                  ]
+                },
+                {
+                  "type": "View",
+                  "weight": 1,
+                  "id": "e1b7fcb33fc1944e80e6e33807269aee56cbdd93",
+                  "version": 0
+                }
+              ]
+            },
+            {
+              "type": "View",
+              "weight": 1,
+              "id": "ee99fad9a9317f5ab5bc25ec1c6473d0c47be321",
+              "version": 0
+            },
+            {
+              "type": "View",
+              "weight": 1,
+              "id": "97e4aba48a81a42784151dfedf81619ba5414af1",
+              "version": 0
+            }
+          ]
+        }
+      },
+      "id": "04ea1b7414f02e64658b689d490c79b3e3612f08"
     }
   ]
 }
