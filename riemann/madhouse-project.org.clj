@@ -51,7 +51,8 @@
    "tail-auth/counter-sshd-successful-logins" {}
    })
 
-;;(logging/init :file "/srv/riemann/log/riemann.log")
+;;(logging/init :file "/srv/riemann/log/riemann.log"
+;;              :console false)
 
 (let [host "10.243.42.34"]
   (tcp-server :host host)
