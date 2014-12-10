@@ -270,18 +270,18 @@
         "type": "Balloon",
         "weight": 1,
         "id": "9f3884b88d607a8a138edc2b9109fc2723f639fe",
-        "version": 56,
+        "version": 57,
         "child": {
           "type": "VStack",
           "weight": 1,
           "id": "37aab5bfb3d60d2ffbd803c30a93214f862cb7db",
-          "version": 56,
+          "version": 57,
           "children": [
             {
               "type": "HStack",
               "weight": 1,
               "id": "4c1a10bddab37b16770ba4c1743d55503dbd876c",
-              "version": 53,
+              "version": 54,
               "children": [
                 {
                   "type": "Grid",
@@ -300,26 +300,48 @@
                   "type": "VStack",
                   "weight": 1,
                   "id": "bcd9002852fd2aa444602c825eecf8eb13f97e4d",
-                  "version": 45,
+                  "version": 46,
                   "children": [
                     {
                       "type": "HStack",
                       "weight": 1,
                       "id": "998a3ad4869c3791ba6aac43d7451a9220117dc3",
-                      "version": 45,
+                      "version": 46,
                       "children": [
                         {
                           "type": "VStack",
                           "weight": 1,
                           "id": "799ce0c58d9530f9cfa0b1ee5d946ac6f887536c",
-                          "version": 4,
+                          "version": 5,
                           "children": [
                             {
-                              "type": "Title",
+                              "type": "HStack",
                               "weight": 1,
-                              "id": "0eaa4c1b102a96e2ac43b7648b86e1da5cc7ae0c",
+                              "id": "0aedf592cba5859f567cea8c460614fa8051ec42",
                               "version": 1,
-                              "title": "Totals"
+                              "children": [
+                                {
+                                  "type": "Title",
+                                  "weight": 1,
+                                  "id": "0eaa4c1b102a96e2ac43b7648b86e1da5cc7ae0c",
+                                  "version": 1,
+                                  "title": "Totals"
+                                },
+                                {
+                                  "type": "Gauge",
+                                  "weight": 1,
+                                  "id": "61466cc6a3c7e4787ed59bc66f493d26898045f7",
+                                  "version": 1,
+                                  "title": "Hosts",
+                                  "query": "service = \"distinct hosts\""
+                                },
+                                {
+                                  "type": "View",
+                                  "weight": 1,
+                                  "id": "5e326e3715bf9c150951efd91f73e4c34b2a4ae5",
+                                  "version": 0
+                                }
+                              ]
                             },
                             {
                               "type": "HStack",

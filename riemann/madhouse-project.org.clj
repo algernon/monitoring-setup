@@ -86,4 +86,22 @@
                                  :state "ok"
                                  :host nil}
                                 index))))
+
+            (where (not (tagged "summary"))
+                   (with :service "distinct hosts"
+                         (coalesce
+                          (smap folds/count
+                                (with {:host nil
+                                       :tags ["summary"]
+                                       :type nil
+                                       :ds_type nil
+                                       :ds_name nil
+                                       :plugin nil
+                                       :ds_index nil
+                                       :plugin_instance nil
+                                       :type_instance nil
+                                       :state nil}
+
+                                      reinject)))))
+
             index))))
