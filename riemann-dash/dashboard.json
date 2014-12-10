@@ -8,32 +8,32 @@
         "type": "Balloon",
         "weight": 1,
         "id": "e75428c8873ba25e8d61ca2e9e67ead6b8739dd3",
-        "version": 28,
+        "version": 35,
         "child": {
           "type": "VStack",
           "weight": 1,
           "id": "fb909ab87f3a3be73956c792d7bebdca0d0c4669",
-          "version": 28,
+          "version": 35,
           "children": [
             {
               "type": "HStack",
               "weight": 1,
               "id": "1e2dd3940959d463326a0cb8390fa04e53d0ec30",
-              "version": 22,
+              "version": 26,
               "children": [
                 {
                   "type": "VStack",
                   "weight": 1,
                   "id": "780c14c4f3c34ddf6b12c1e905431796bf8f6fb0",
-                  "version": 9,
+                  "version": 10,
                   "children": [
                     {
                       "type": "Grid",
                       "weight": 1,
                       "id": "34c6bd3832803793e5e1ec90238d4891160af337",
-                      "version": 6,
+                      "version": 7,
                       "title": "CPU",
-                      "query": "service ~= \"cpu-average/cpu-(user|nice|system|idle|steal)\"",
+                      "query": "service ~= \"cpu-average/cpu-(user|nice|system|idle|steal)\" and not tagged \"summary\"",
                       "max": "",
                       "rows": "service",
                       "cols": "host",
@@ -59,15 +59,15 @@
                   "type": "VStack",
                   "weight": 1,
                   "id": "c06e13702b2bec0015153a4f10978c2d4b2353c1",
-                  "version": 3,
+                  "version": 4,
                   "children": [
                     {
                       "type": "Grid",
                       "weight": 1,
                       "id": "a3875c0e331a8598c424763f1f4e2eee533b0481",
-                      "version": 2,
+                      "version": 3,
                       "title": "Load",
-                      "query": "service =~ \"load/load/%\"",
+                      "query": "service =~ \"load/load/%\" and not tagged \"summary\"",
                       "max": "",
                       "rows": "service",
                       "cols": "host",
@@ -93,15 +93,15 @@
                   "type": "VStack",
                   "weight": 1,
                   "id": "b835659a75bf27d2eeb9464d4026c9d5406fd28f",
-                  "version": 9,
+                  "version": 11,
                   "children": [
                     {
                       "type": "Grid",
                       "weight": 1,
                       "id": "cdcf93cced9e82533832dc9f9b9868c5965a56c3",
-                      "version": 3,
+                      "version": 4,
                       "title": "Memory",
-                      "query": "service =~ \"memory/%\"",
+                      "query": "service =~ \"memory/%\" and not tagged \"summary\"",
                       "max": "",
                       "rows": "service",
                       "cols": "host",
@@ -129,15 +129,15 @@
               "type": "HStack",
               "weight": 1,
               "id": "ed454080589593d9054f8a923cd6ec384b521f70",
-              "version": 6,
+              "version": 9,
               "children": [
                 {
                   "type": "Flot",
                   "weight": 1,
                   "id": "36d456a789a2cf6e33ecdb24e99eed8aee536374",
-                  "version": 2,
+                  "version": 3,
                   "title": "CPU over time",
-                  "query": "service ~= \"cpu-average/cpu-(user|system|idle)\"",
+                  "query": "service ~= \"cpu-average/cpu-(user|system|idle)\" and not tagged \"summary\"",
                   "max": null,
                   "timeRange": 900,
                   "graphType": "line",
@@ -147,9 +147,9 @@
                   "type": "Flot",
                   "weight": 1,
                   "id": "cfd5b5f863d9e899731f9d3dcff22fbbe65b66f5",
-                  "version": 1,
+                  "version": 2,
                   "title": "Load over time",
-                  "query": "service =~ \"load/load/midterm\"",
+                  "query": "service =~ \"load/load/midterm\" and not tagged \"summary\"",
                   "max": null,
                   "timeRange": 900,
                   "graphType": "line",
@@ -159,9 +159,9 @@
                   "type": "Flot",
                   "weight": 1,
                   "id": "27d4db337a9518b2d510d607d9c9a0bcc1bb5f1b",
-                  "version": 3,
+                  "version": 4,
                   "title": "Memory over time",
-                  "query": "service ~= \"memory/memory-(free|used)\"",
+                  "query": "service ~= \"memory/memory-(free|used)\" and not tagged \"summary\"",
                   "max": null,
                   "timeRange": 900,
                   "graphType": "line",
@@ -270,18 +270,18 @@
         "type": "Balloon",
         "weight": 1,
         "id": "9f3884b88d607a8a138edc2b9109fc2723f639fe",
-        "version": 7,
+        "version": 17,
         "child": {
           "type": "VStack",
           "weight": 1,
           "id": "37aab5bfb3d60d2ffbd803c30a93214f862cb7db",
-          "version": 7,
+          "version": 17,
           "children": [
             {
               "type": "HStack",
               "weight": 1,
               "id": "4c1a10bddab37b16770ba4c1743d55503dbd876c",
-              "version": 7,
+              "version": 14,
               "children": [
                 {
                   "type": "Grid",
@@ -297,10 +297,110 @@
                   "col_sort": "lexical"
                 },
                 {
-                  "type": "View",
+                  "type": "VStack",
                   "weight": 1,
-                  "id": "ef19d352378726821916233a015e52b035738efe",
-                  "version": 0
+                  "id": "bcd9002852fd2aa444602c825eecf8eb13f97e4d",
+                  "version": 6,
+                  "children": [
+                    {
+                      "type": "HStack",
+                      "weight": 1,
+                      "id": "998a3ad4869c3791ba6aac43d7451a9220117dc3",
+                      "version": 6,
+                      "children": [
+                        {
+                          "type": "VStack",
+                          "weight": 1,
+                          "id": "05935cfac0b4d5b0b6002b6ba1cb9d9d85ea6f7b",
+                          "version": 2,
+                          "children": [
+                            {
+                              "type": "HStack",
+                              "weight": 1,
+                              "id": "794792a985dbf3c01f2276a11668b57363f10467",
+                              "version": 2,
+                              "children": [
+                                {
+                                  "type": "View",
+                                  "weight": 1,
+                                  "id": "9d307f55fc8834d0d28910f42f10206391a913de",
+                                  "version": 0
+                                },
+                                {
+                                  "type": "Gauge",
+                                  "weight": 4,
+                                  "id": "ef19d352378726821916233a015e52b035738efe",
+                                  "version": 4,
+                                  "title": "Total Load",
+                                  "query": "tagged \"summary\" and service = \"load/load/shortterm\""
+                                }
+                              ]
+                            },
+                            {
+                              "type": "View",
+                              "weight": 1,
+                              "id": "ce96536fa0a3d3cf9c8c35a1e5e7d24aaca40feb",
+                              "version": 0
+                            }
+                          ]
+                        },
+                        {
+                          "type": "VStack",
+                          "weight": 1,
+                          "id": "fb52972e6d3f7c220c6e90dbb2e674cf45c35081",
+                          "version": 2,
+                          "children": [
+                            {
+                              "type": "HStack",
+                              "weight": 1,
+                              "id": "46224b17f702d64f4b374d384e3f0cc78f813f0c",
+                              "version": 2,
+                              "children": [
+                                {
+                                  "type": "Gauge",
+                                  "weight": 2,
+                                  "id": "199ba4248bd73300ba1690646c5cc76bf54ad2e6",
+                                  "version": 3,
+                                  "title": "Total memory used",
+                                  "query": "tagged \"summary\" and service = \"memory/memory-used\""
+                                },
+                                {
+                                  "type": "View",
+                                  "weight": 1,
+                                  "id": "cb09e8e87836b0f1500658d9d942eb318c1f8328",
+                                  "version": 0
+                                }
+                              ]
+                            },
+                            {
+                              "type": "View",
+                              "weight": 1,
+                              "id": "450e72656e9847ea057e30a1d0d6215be22c149f",
+                              "version": 0
+                            }
+                          ]
+                        },
+                        {
+                          "type": "View",
+                          "weight": 1,
+                          "id": "95384594fd7b78acb8174683635e211c8eefb6bb",
+                          "version": 0
+                        }
+                      ]
+                    },
+                    {
+                      "type": "View",
+                      "weight": 1,
+                      "id": "fc87be102d19c4074f8f85691747b9933f576e9e",
+                      "version": 0
+                    },
+                    {
+                      "type": "View",
+                      "weight": 1,
+                      "id": "193094719f37472151be78487ba7fd9e48280746",
+                      "version": 0
+                    }
+                  ]
                 },
                 {
                   "type": "View",
@@ -309,12 +409,6 @@
                   "version": 0
                 }
               ]
-            },
-            {
-              "type": "View",
-              "weight": 1,
-              "id": "ee99fad9a9317f5ab5bc25ec1c6473d0c47be321",
-              "version": 0
             },
             {
               "type": "View",

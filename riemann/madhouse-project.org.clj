@@ -68,4 +68,13 @@
    (default :ttl 10
      (expired #(prn "Expired" %))
      (where (not (service #"^riemann "))
+            (where (or (service #"^load/load/")
+                       (service #"^memory/"))
+                   index
+                   (by :service
+                       (coalesce
+                        (smap folds/sum
+                              (with {:host nil
+                                     :tags ["summary"]}
+                                    index)))))
             index))))
