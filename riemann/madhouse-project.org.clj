@@ -7,6 +7,20 @@
 (require '[clojure.string :as string])
 (require '[org.spootnik.riemann.thresholds :refer [threshold-check]])
 
+(defmacro with-but-collectd
+  [keys & children]
+
+  (let [new-keys (merge {:host nil
+                         :type nil
+                         :type_instance nil
+                         :ds_type nil
+                         :ds_name nil
+                         :ds_index nil
+                         :plugin nil
+                         :plugin_instance nil}
+                        keys)]
+    `(~'with ~new-keys ~@children)))
+
 (def thresholds
   {"cpu-average/cpu-user" {:warning 30 :critical 60}
    "cpu-average/cpu-system" {:warning 30 :critical 60}
@@ -68,40 +82,32 @@
    (default :ttl 10
      (expired #(prn "Expired" %))
      (where (not (service #"^riemann "))
+
             (where (or (service #"^load/load/")
                        (service #"^memory/"))
                    index
                    (by :service
                        (coalesce
                         (smap folds/sum
-                              (with {:host nil
-                                     :tags ["summary"]}
-                                    index)))))
+                              (with-but-collectd {:tags ["summary"]}
+                                index)))))
+
             (where (service #"^interface-.*/if_octets/[tr]x$")
                    index
                    (coalesce
                     (smap folds/sum
-                          (with {:service "total network traffic"
-                                 :tags ["summary"]
-                                 :state "ok"
-                                 :host nil}
-                                index))))
+                          (with-but-collectd {:service "total network traffic"
+                                              :tags ["summary"]
+                                              :state "ok"}
+                            index))))
 
             (where (not (tagged "summary"))
                    (with :service "distinct hosts"
                          (coalesce
                           (smap folds/count
-                                (with {:host nil
-                                       :tags ["summary"]
-                                       :type nil
-                                       :ds_type nil
-                                       :ds_name nil
-                                       :plugin nil
-                                       :ds_index nil
-                                       :plugin_instance nil
-                                       :type_instance nil
-                                       :state nil}
+                                (with-but-collectd {:tags ["summary"]
+                                                    :state nil}
 
-                                      reinject)))))
+                                  reinject)))))
 
             index))))
