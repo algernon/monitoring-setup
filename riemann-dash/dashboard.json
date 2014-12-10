@@ -8,18 +8,18 @@
         "type": "Balloon",
         "weight": 1,
         "id": "e75428c8873ba25e8d61ca2e9e67ead6b8739dd3",
-        "version": 37,
+        "version": 41,
         "child": {
           "type": "VStack",
           "weight": 1,
           "id": "fb909ab87f3a3be73956c792d7bebdca0d0c4669",
-          "version": 37,
+          "version": 41,
           "children": [
             {
               "type": "HStack",
               "weight": 1,
               "id": "1e2dd3940959d463326a0cb8390fa04e53d0ec30",
-              "version": 27,
+              "version": 29,
               "children": [
                 {
                   "type": "VStack",
@@ -93,13 +93,13 @@
                   "type": "VStack",
                   "weight": 1,
                   "id": "b835659a75bf27d2eeb9464d4026c9d5406fd28f",
-                  "version": 11,
+                  "version": 13,
                   "children": [
                     {
                       "type": "Grid",
                       "weight": 1,
                       "id": "cdcf93cced9e82533832dc9f9b9868c5965a56c3",
-                      "version": 4,
+                      "version": 6,
                       "title": "Memory",
                       "query": "service =~ \"memory/%\" and not tagged \"summary\"",
                       "max": "",
@@ -129,7 +129,7 @@
               "type": "HStack",
               "weight": 1,
               "id": "ed454080589593d9054f8a923cd6ec384b521f70",
-              "version": 10,
+              "version": 12,
               "children": [
                 {
                   "type": "Flot",
@@ -159,10 +159,10 @@
                   "type": "Flot",
                   "weight": 1,
                   "id": "27d4db337a9518b2d510d607d9c9a0bcc1bb5f1b",
-                  "version": 4,
+                  "version": 6,
                   "title": "Memory over time",
-                  "query": "service ~= \"memory/memory-(free|used)\" and not tagged \"summary\"",
-                  "max": null,
+                  "query": "service = \"memory/percent-used\"",
+                  "max": "100",
                   "timeRange": 900,
                   "graphType": "line",
                   "stackMode": "false"

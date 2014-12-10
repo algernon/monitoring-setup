@@ -21,6 +21,12 @@
                         keys)]
     `(~'with ~new-keys ~@children)))
 
+(defn float-to-percent
+  [& children]
+  (fn [e]
+    (let [new-event (assoc e :metric (* 100 (:metric e)))]
+      (call-rescue new-event children))))
+
 (def thresholds
   {"cpu-average/cpu-user" {:warning 30 :critical 60}
    "cpu-average/cpu-system" {:warning 30 :critical 60}
@@ -46,6 +52,8 @@
                          :critical 0.05
                          :invert true}
    "memory/memory-used" {}
+   "memory/percent-used" {:warning 80
+                          :critical 98}
 
    "swap/swap-cached" {}
    "swap/swap-free" {}
@@ -116,6 +124,21 @@
                           (service "cpu-average/cpu-user")]
                          (smap folds/sum
                                (with :service "cpu-average/cpu-used"
-                                     index))))
+                                     index)))
+
+                (project [(service "memory/memory-used")
+                          (service "memory/memory-free")
+                          (service "memory/memory-cached")
+                          (service "memory/memory-buffered")]
+                         (smap folds/sum
+                               (with {:service "memory/memory-total"
+                                      :tags ["summary"]}
+                                     reinject)))
+
+                (project [(service "memory/memory-used")
+                          (service "memory/memory-total")]
+                         (smap folds/quotient
+                               (with :service "memory/percent-used"
+                                     (float-to-percent index)))))
 
             index))))
