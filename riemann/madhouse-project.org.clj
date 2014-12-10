@@ -24,6 +24,7 @@
 (def thresholds
   {"cpu-average/cpu-user" {:warning 30 :critical 60}
    "cpu-average/cpu-system" {:warning 30 :critical 60}
+   "cpu-average/cpu-used" {:warning 60 :critical 90}
    "cpu-average/cpu-nice" {:warning 50 :critical 20}
    "cpu-average/cpu-idle" {:warning 50 :critical 20 :invert true}
    "cpu-average/cpu-steal" {:warning 50 :critical 20}
@@ -109,5 +110,12 @@
                                                     :state nil}
 
                                   reinject)))))
+
+            (by [:host]
+                (project [(service "cpu-average/cpu-system")
+                          (service "cpu-average/cpu-user")]
+                         (smap folds/sum
+                               (with :service "cpu-average/cpu-used"
+                                     index))))
 
             index))))

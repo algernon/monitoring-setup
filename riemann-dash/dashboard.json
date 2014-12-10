@@ -8,32 +8,32 @@
         "type": "Balloon",
         "weight": 1,
         "id": "e75428c8873ba25e8d61ca2e9e67ead6b8739dd3",
-        "version": 35,
+        "version": 37,
         "child": {
           "type": "VStack",
           "weight": 1,
           "id": "fb909ab87f3a3be73956c792d7bebdca0d0c4669",
-          "version": 35,
+          "version": 37,
           "children": [
             {
               "type": "HStack",
               "weight": 1,
               "id": "1e2dd3940959d463326a0cb8390fa04e53d0ec30",
-              "version": 26,
+              "version": 27,
               "children": [
                 {
                   "type": "VStack",
                   "weight": 1,
                   "id": "780c14c4f3c34ddf6b12c1e905431796bf8f6fb0",
-                  "version": 10,
+                  "version": 11,
                   "children": [
                     {
                       "type": "Grid",
                       "weight": 1,
                       "id": "34c6bd3832803793e5e1ec90238d4891160af337",
-                      "version": 7,
+                      "version": 8,
                       "title": "CPU",
-                      "query": "service ~= \"cpu-average/cpu-(user|nice|system|idle|steal)\" and not tagged \"summary\"",
+                      "query": "service ~= \"cpu-average/cpu-(user|nice|system|idle|steal|used)\" and not tagged \"summary\"",
                       "max": "",
                       "rows": "service",
                       "cols": "host",
@@ -129,15 +129,15 @@
               "type": "HStack",
               "weight": 1,
               "id": "ed454080589593d9054f8a923cd6ec384b521f70",
-              "version": 9,
+              "version": 10,
               "children": [
                 {
                   "type": "Flot",
                   "weight": 1,
                   "id": "36d456a789a2cf6e33ecdb24e99eed8aee536374",
-                  "version": 3,
+                  "version": 4,
                   "title": "CPU over time",
-                  "query": "service ~= \"cpu-average/cpu-(user|system|idle)\" and not tagged \"summary\"",
+                  "query": "service = \"cpu-average/cpu-used\" and not tagged \"summary\"",
                   "max": null,
                   "timeRange": 900,
                   "graphType": "line",
