@@ -77,4 +77,13 @@
                               (with {:host nil
                                      :tags ["summary"]}
                                     index)))))
+            (where (service #"^interface-.*/if_octets/[tr]x$")
+                   index
+                   (coalesce
+                    (smap folds/sum
+                          (with {:service "total network traffic"
+                                 :tags ["summary"]
+                                 :state "ok"
+                                 :host nil}
+                                index))))
             index))))

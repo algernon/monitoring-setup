@@ -270,18 +270,18 @@
         "type": "Balloon",
         "weight": 1,
         "id": "9f3884b88d607a8a138edc2b9109fc2723f639fe",
-        "version": 17,
+        "version": 56,
         "child": {
           "type": "VStack",
           "weight": 1,
           "id": "37aab5bfb3d60d2ffbd803c30a93214f862cb7db",
-          "version": 17,
+          "version": 56,
           "children": [
             {
               "type": "HStack",
               "weight": 1,
               "id": "4c1a10bddab37b16770ba4c1743d55503dbd876c",
-              "version": 14,
+              "version": 53,
               "children": [
                 {
                   "type": "Grid",
@@ -300,91 +300,60 @@
                   "type": "VStack",
                   "weight": 1,
                   "id": "bcd9002852fd2aa444602c825eecf8eb13f97e4d",
-                  "version": 6,
+                  "version": 45,
                   "children": [
                     {
                       "type": "HStack",
                       "weight": 1,
                       "id": "998a3ad4869c3791ba6aac43d7451a9220117dc3",
-                      "version": 6,
+                      "version": 45,
                       "children": [
                         {
                           "type": "VStack",
                           "weight": 1,
-                          "id": "05935cfac0b4d5b0b6002b6ba1cb9d9d85ea6f7b",
-                          "version": 2,
+                          "id": "799ce0c58d9530f9cfa0b1ee5d946ac6f887536c",
+                          "version": 4,
                           "children": [
+                            {
+                              "type": "Title",
+                              "weight": 1,
+                              "id": "0eaa4c1b102a96e2ac43b7648b86e1da5cc7ae0c",
+                              "version": 1,
+                              "title": "Totals"
+                            },
                             {
                               "type": "HStack",
                               "weight": 1,
-                              "id": "794792a985dbf3c01f2276a11668b57363f10467",
-                              "version": 2,
+                              "id": "3a427c14963b7102f89acf9f38f161729ab45d7c",
+                              "version": 3,
                               "children": [
                                 {
-                                  "type": "View",
+                                  "type": "Gauge",
                                   "weight": 1,
-                                  "id": "9d307f55fc8834d0d28910f42f10206391a913de",
-                                  "version": 0
+                                  "id": "95384594fd7b78acb8174683635e211c8eefb6bb",
+                                  "version": 1,
+                                  "title": "Load",
+                                  "query": "tagged \"summary\" and service = \"load/load/shortterm\""
                                 },
                                 {
                                   "type": "Gauge",
-                                  "weight": 4,
-                                  "id": "ef19d352378726821916233a015e52b035738efe",
-                                  "version": 4,
-                                  "title": "Total Load",
-                                  "query": "tagged \"summary\" and service = \"load/load/shortterm\""
-                                }
-                              ]
-                            },
-                            {
-                              "type": "View",
-                              "weight": 1,
-                              "id": "ce96536fa0a3d3cf9c8c35a1e5e7d24aaca40feb",
-                              "version": 0
-                            }
-                          ]
-                        },
-                        {
-                          "type": "VStack",
-                          "weight": 1,
-                          "id": "fb52972e6d3f7c220c6e90dbb2e674cf45c35081",
-                          "version": 2,
-                          "children": [
-                            {
-                              "type": "HStack",
-                              "weight": 1,
-                              "id": "46224b17f702d64f4b374d384e3f0cc78f813f0c",
-                              "version": 2,
-                              "children": [
-                                {
-                                  "type": "Gauge",
-                                  "weight": 2,
-                                  "id": "199ba4248bd73300ba1690646c5cc76bf54ad2e6",
-                                  "version": 3,
-                                  "title": "Total memory used",
+                                  "weight": 1,
+                                  "id": "bf89d6fc02e902ce30298cd8a081921c0b352cdc",
+                                  "version": 1,
+                                  "title": "Mem use (Gb)",
                                   "query": "tagged \"summary\" and service = \"memory/memory-used\""
                                 },
                                 {
-                                  "type": "View",
+                                  "type": "Gauge",
                                   "weight": 1,
-                                  "id": "cb09e8e87836b0f1500658d9d942eb318c1f8328",
-                                  "version": 0
+                                  "id": "23a3b5ef92bba69f2df8cfc66ba17f8569fc985f",
+                                  "version": 1,
+                                  "title": "Net TP (kbps)",
+                                  "query": "service = \"total network traffic\""
                                 }
                               ]
-                            },
-                            {
-                              "type": "View",
-                              "weight": 1,
-                              "id": "450e72656e9847ea057e30a1d0d6215be22c149f",
-                              "version": 0
                             }
                           ]
-                        },
-                        {
-                          "type": "View",
-                          "weight": 1,
-                          "id": "95384594fd7b78acb8174683635e211c8eefb6bb",
-                          "version": 0
                         }
                       ]
                     },
