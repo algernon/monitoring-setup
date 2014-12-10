@@ -62,10 +62,10 @@
 
 (periodically-expire 5)
 
-(let [index (tap :index (index))]
+(let [index (smap (threshold-check thresholds)
+                  (tap :index (index)))]
   (streams
    (default :ttl 10
      (expired #(prn "Expired" %))
      (where (not (service #"^riemann "))
-            (smap (threshold-check thresholds)
-                  index)))))
+            index))))
