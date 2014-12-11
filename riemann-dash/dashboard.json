@@ -331,8 +331,8 @@
                                   "type": "Gauge",
                                   "weight": 1,
                                   "id": "61466cc6a3c7e4787ed59bc66f493d26898045f7",
-                                  "version": 1,
-                                  "title": "Hosts",
+                                  "version": 2,
+                                  "title": "Online hosts",
                                   "query": "service = \"distinct hosts\""
                                 },
                                 {
