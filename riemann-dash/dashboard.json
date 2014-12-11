@@ -8,12 +8,12 @@
         "type": "Balloon",
         "weight": 1,
         "id": "e75428c8873ba25e8d61ca2e9e67ead6b8739dd3",
-        "version": 41,
+        "version": 48,
         "child": {
           "type": "VStack",
           "weight": 1,
           "id": "fb909ab87f3a3be73956c792d7bebdca0d0c4669",
-          "version": 41,
+          "version": 48,
           "children": [
             {
               "type": "HStack",
@@ -129,19 +129,89 @@
               "type": "HStack",
               "weight": 1,
               "id": "ed454080589593d9054f8a923cd6ec384b521f70",
-              "version": 12,
+              "version": 19,
               "children": [
                 {
-                  "type": "Flot",
+                  "type": "VStack",
                   "weight": 1,
-                  "id": "36d456a789a2cf6e33ecdb24e99eed8aee536374",
-                  "version": 4,
-                  "title": "CPU over time",
-                  "query": "service = \"cpu-average/cpu-used\" and not tagged \"summary\"",
-                  "max": null,
-                  "timeRange": 900,
-                  "graphType": "line",
-                  "stackMode": "false"
+                  "id": "606aa9ab8a10fe546627ad96be3fe016eac4840c",
+                  "version": 6,
+                  "children": [
+                    {
+                      "type": "Grid",
+                      "weight": 1,
+                      "id": "36d456a789a2cf6e33ecdb24e99eed8aee536374",
+                      "version": 6,
+                      "title": "sshd",
+                      "query": "service =~ \"tail-auth/counter-sshd-%\"",
+                      "max": "",
+                      "rows": "service",
+                      "cols": "host",
+                      "row_sort": "lexical",
+                      "col_sort": "lexical"
+                    },
+                    {
+                      "type": "HStack",
+                      "weight": 1,
+                      "id": "3001a3e99c56e7775c4bf280dbae81ff73e9aef0",
+                      "version": 2,
+                      "children": [
+                        {
+                          "type": "Title",
+                          "weight": 1,
+                          "id": "aa6237efd3d9db90f4fb2e21c2b43721597e7b7c",
+                          "version": 1,
+                          "title": "Totals"
+                        },
+                        {
+                          "type": "Gauge",
+                          "weight": 1,
+                          "id": "ff218bda5c9c7f09e4675cd1ac7741fe835d0f0b",
+                          "version": 1,
+                          "title": "Online hosts",
+                          "query": "service = \"distinct hosts\""
+                        },
+                        {
+                          "type": "View",
+                          "weight": 1,
+                          "id": "42a463d1f00c633ff34d92dcac7d20e6af3481a0",
+                          "version": 0
+                        }
+                      ]
+                    },
+                    {
+                      "type": "HStack",
+                      "weight": 1,
+                      "id": "b21e3022446ef4e68671508f317aacadcceb2c20",
+                      "version": 3,
+                      "children": [
+                        {
+                          "type": "Gauge",
+                          "weight": 1,
+                          "id": "27afd1799b97df522f066549fe64efdd359ce796",
+                          "version": 1,
+                          "title": "Load",
+                          "query": "tagged \"summary\" and service = \"load/load/shortterm\""
+                        },
+                        {
+                          "type": "Gauge",
+                          "weight": 1,
+                          "id": "ce79166747fbf6975786bbb79963d4c388e4eb9f",
+                          "version": 1,
+                          "title": "Mem use (Gb)",
+                          "query": "tagged \"summary\" and service = \"memory/memory-used\""
+                        },
+                        {
+                          "type": "Gauge",
+                          "weight": 1,
+                          "id": "24c690619b53473fbe34086dd1efc40358c5b919",
+                          "version": 1,
+                          "title": "Net TPS (kbps)",
+                          "query": "service = \"total network traffic\""
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
                   "type": "Flot",
@@ -263,154 +333,6 @@
         }
       },
       "id": "8a997a19dd2a8341f3a97a4c2051fea172d5e5e3"
-    },
-    {
-      "name": "Services",
-      "view": {
-        "type": "Balloon",
-        "weight": 1,
-        "id": "9f3884b88d607a8a138edc2b9109fc2723f639fe",
-        "version": 57,
-        "child": {
-          "type": "VStack",
-          "weight": 1,
-          "id": "37aab5bfb3d60d2ffbd803c30a93214f862cb7db",
-          "version": 57,
-          "children": [
-            {
-              "type": "HStack",
-              "weight": 1,
-              "id": "4c1a10bddab37b16770ba4c1743d55503dbd876c",
-              "version": 54,
-              "children": [
-                {
-                  "type": "Grid",
-                  "weight": 1,
-                  "id": "f4a5c78fc997ce7047efd974014a2e0fce58399d",
-                  "version": 4,
-                  "title": "sshd",
-                  "query": "service =~ \"tail-auth/counter-sshd-%\"",
-                  "max": "",
-                  "rows": "service",
-                  "cols": "host",
-                  "row_sort": "lexical",
-                  "col_sort": "lexical"
-                },
-                {
-                  "type": "VStack",
-                  "weight": 1,
-                  "id": "bcd9002852fd2aa444602c825eecf8eb13f97e4d",
-                  "version": 46,
-                  "children": [
-                    {
-                      "type": "HStack",
-                      "weight": 1,
-                      "id": "998a3ad4869c3791ba6aac43d7451a9220117dc3",
-                      "version": 46,
-                      "children": [
-                        {
-                          "type": "VStack",
-                          "weight": 1,
-                          "id": "799ce0c58d9530f9cfa0b1ee5d946ac6f887536c",
-                          "version": 5,
-                          "children": [
-                            {
-                              "type": "HStack",
-                              "weight": 1,
-                              "id": "0aedf592cba5859f567cea8c460614fa8051ec42",
-                              "version": 1,
-                              "children": [
-                                {
-                                  "type": "Title",
-                                  "weight": 1,
-                                  "id": "0eaa4c1b102a96e2ac43b7648b86e1da5cc7ae0c",
-                                  "version": 1,
-                                  "title": "Totals"
-                                },
-                                {
-                                  "type": "Gauge",
-                                  "weight": 1,
-                                  "id": "61466cc6a3c7e4787ed59bc66f493d26898045f7",
-                                  "version": 2,
-                                  "title": "Online hosts",
-                                  "query": "service = \"distinct hosts\""
-                                },
-                                {
-                                  "type": "View",
-                                  "weight": 1,
-                                  "id": "5e326e3715bf9c150951efd91f73e4c34b2a4ae5",
-                                  "version": 0
-                                }
-                              ]
-                            },
-                            {
-                              "type": "HStack",
-                              "weight": 1,
-                              "id": "3a427c14963b7102f89acf9f38f161729ab45d7c",
-                              "version": 3,
-                              "children": [
-                                {
-                                  "type": "Gauge",
-                                  "weight": 1,
-                                  "id": "95384594fd7b78acb8174683635e211c8eefb6bb",
-                                  "version": 1,
-                                  "title": "Load",
-                                  "query": "tagged \"summary\" and service = \"load/load/shortterm\""
-                                },
-                                {
-                                  "type": "Gauge",
-                                  "weight": 1,
-                                  "id": "bf89d6fc02e902ce30298cd8a081921c0b352cdc",
-                                  "version": 1,
-                                  "title": "Mem use (Gb)",
-                                  "query": "tagged \"summary\" and service = \"memory/memory-used\""
-                                },
-                                {
-                                  "type": "Gauge",
-                                  "weight": 1,
-                                  "id": "23a3b5ef92bba69f2df8cfc66ba17f8569fc985f",
-                                  "version": 1,
-                                  "title": "Net TP (kbps)",
-                                  "query": "service = \"total network traffic\""
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "View",
-                      "weight": 1,
-                      "id": "fc87be102d19c4074f8f85691747b9933f576e9e",
-                      "version": 0
-                    },
-                    {
-                      "type": "View",
-                      "weight": 1,
-                      "id": "193094719f37472151be78487ba7fd9e48280746",
-                      "version": 0
-                    }
-                  ]
-                },
-                {
-                  "type": "View",
-                  "weight": 1,
-                  "id": "e1b7fcb33fc1944e80e6e33807269aee56cbdd93",
-                  "version": 0
-                }
-              ]
-            },
-            {
-              "type": "View",
-              "weight": 1,
-              "id": "97e4aba48a81a42784151dfedf81619ba5414af1",
-              "version": 0
-            }
-          ]
-        }
-      },
-      "id": "04ea1b7414f02e64658b689d490c79b3e3612f08"
     }
   ]
 }
