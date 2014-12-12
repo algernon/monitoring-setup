@@ -150,9 +150,6 @@
                                      (float-to-percent index)))))
 
             (clock-skew
-             (rate 5
-                   (smap folds/non-nil-metrics
-                         (with-but-collectd {:service "clock skew"
-                                             :ttl default-ttl}
-                           index))))
+             (with-but-collectd {:service "clock skew"}
+               (rate 5 index)))
             index))))
