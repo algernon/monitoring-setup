@@ -21,6 +21,6 @@
 (defn float-to-percent
   [& children]
   (fn [e]
-    (when e
+    (when (and e (:metric e))
       (let [new-event (assoc e :metric (* 100 (:metric e)))]
         (call-rescue new-event children)))))
