@@ -84,7 +84,7 @@
   (ws-server  :host host)
   (repl-server :host host))
 
-(def default-ttl 10)
+(def default-ttl 30)
 (periodically-expire 1)
 
 (let [index (smap (threshold-check thresholds)
