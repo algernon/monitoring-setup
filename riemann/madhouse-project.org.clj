@@ -84,7 +84,9 @@
                                       :ttl default-ttl}
                                      (float-to-percent index)))))
 
-            (clock-skew
-             (with-but-collectd {:service "clock skew"}
-               (rate 5 index)))
+            (where (not (nil? host))
+                   (clock-skew
+                    (with-but-collectd {:service "clock skew"
+                                        :tags ["internal"]}
+                      (rate 5 index))))
             index))))
