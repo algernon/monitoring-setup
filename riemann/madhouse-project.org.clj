@@ -91,7 +91,7 @@
                   (tap :index (index)))]
   (streams
    (default :ttl default-ttl
-     (expired #(prn "Expired" %))
+     (expired #(info "Expired" %))
      (where (not (service #"^riemann "))
 
             (where (or (service #"^load/load/")
