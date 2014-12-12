@@ -24,8 +24,9 @@
 (defn float-to-percent
   [& children]
   (fn [e]
-    (let [new-event (assoc e :metric (* 100 (:metric e)))]
-      (call-rescue new-event children))))
+    (when e
+      (let [new-event (assoc e :metric (* 100 (:metric e)))]
+        (call-rescue new-event children)))))
 
 (def thresholds
   {"cpu-average/cpu-user" {:warning 30 :critical 60}
