@@ -8,12 +8,12 @@
         "type": "Balloon",
         "weight": 1,
         "id": "e75428c8873ba25e8d61ca2e9e67ead6b8739dd3",
-        "version": 48,
+        "version": 50,
         "child": {
           "type": "VStack",
           "weight": 1,
           "id": "fb909ab87f3a3be73956c792d7bebdca0d0c4669",
-          "version": 48,
+          "version": 50,
           "children": [
             {
               "type": "HStack",
@@ -129,13 +129,13 @@
               "type": "HStack",
               "weight": 1,
               "id": "ed454080589593d9054f8a923cd6ec384b521f70",
-              "version": 19,
+              "version": 21,
               "children": [
                 {
                   "type": "VStack",
                   "weight": 1,
                   "id": "606aa9ab8a10fe546627ad96be3fe016eac4840c",
-                  "version": 6,
+                  "version": 8,
                   "children": [
                     {
                       "type": "Grid",
@@ -154,7 +154,7 @@
                       "type": "HStack",
                       "weight": 1,
                       "id": "3001a3e99c56e7775c4bf280dbae81ff73e9aef0",
-                      "version": 2,
+                      "version": 4,
                       "children": [
                         {
                           "type": "Title",
@@ -172,10 +172,12 @@
                           "query": "service = \"distinct hosts\""
                         },
                         {
-                          "type": "View",
+                          "type": "Gauge",
                           "weight": 1,
                           "id": "42a463d1f00c633ff34d92dcac7d20e6af3481a0",
-                          "version": 0
+                          "version": 2,
+                          "title": "Clock skew",
+                          "query": "service = \"clock skew\""
                         }
                       ]
                     },
