@@ -17,7 +17,10 @@
   (tcp-server :host host)
   (udp-server :host host)
   (ws-server  :host host)
-  (repl-server :host host))
+  (repl-server :host host)
+  (graphite-server :host host
+                   :protocol :udp
+                   :parser-fn graphite-event-parser))
 
 (def default-ttl 30)
 (periodically-expire 1)

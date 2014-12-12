@@ -24,3 +24,15 @@
     (when (and e (:metric e))
       (let [new-event (assoc e :metric (* 100 (:metric e)))]
         (call-rescue new-event children)))))
+
+(defn graphite-event-parser
+  [{:keys [service] :as event}]
+
+  (if-let [[source source-type node metric-type metric]
+           (string/split service #"\." 5)]
+    {:host node
+     :service metric
+     :metric (:metric event)
+     :time (:time event)
+     :tags [source metric-type]
+     :ttl (* 60 5)}))
