@@ -149,4 +149,8 @@
                                       :ttl default-ttl}
                                      (float-to-percent index)))))
 
+            (clock-skew
+             (with-but-collectd {:service "clock skew"
+                                 :ttl default-ttl}
+               index))
             index))))
