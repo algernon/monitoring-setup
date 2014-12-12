@@ -84,12 +84,13 @@
   (ws-server  :host host)
   (repl-server :host host))
 
-(periodically-expire 5)
+(def default-ttl 10)
+(periodically-expire 1)
 
 (let [index (smap (threshold-check thresholds)
                   (tap :index (index)))]
   (streams
-   (default :ttl 10
+   (default :ttl default-ttl
      (expired #(prn "Expired" %))
      (where (not (service #"^riemann "))
 
@@ -99,7 +100,8 @@
                    (by :service
                        (coalesce
                         (smap folds/sum
-                              (with-but-collectd {:tags ["summary"]}
+                              (with-but-collectd {:tags ["summary"]
+                                                  :ttl default-ttl}
                                 index)))))
 
             (where (service #"^interface-.*/if_octets/[tr]x$")
@@ -108,6 +110,7 @@
                     (smap folds/sum
                           (with-but-collectd {:service "total network traffic"
                                               :tags ["summary"]
+                                              :ttl default-ttl
                                               :state "ok"}
                             index))))
 
@@ -116,6 +119,7 @@
                          (coalesce
                           (smap folds/count
                                 (with-but-collectd {:tags ["summary"]
+                                                    :ttl default-ttl
                                                     :state nil}
 
                                   reinject)))))
@@ -124,7 +128,8 @@
                 (project [(service "cpu-average/cpu-system")
                           (service "cpu-average/cpu-user")]
                          (smap folds/sum
-                               (with :service "cpu-average/cpu-used"
+                               (with {:service "cpu-average/cpu-used"
+                                      :ttl default-ttl}
                                      index)))
 
                 (project [(service "memory/memory-used")
@@ -133,13 +138,15 @@
                           (service "memory/memory-buffered")]
                          (smap folds/sum
                                (with {:service "memory/memory-total"
+                                      :ttl default-ttl
                                       :tags ["summary"]}
                                      reinject)))
 
                 (project [(service "memory/memory-used")
                           (service "memory/memory-total")]
                          (smap folds/quotient
-                               (with :service "memory/percent-used"
+                               (with {:service "memory/percent-used"
+                                      :ttl default-ttl}
                                      (float-to-percent index)))))
 
             index))))
