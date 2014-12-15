@@ -29,67 +29,77 @@
                   (tap :index (index)))]
   (streams
    (default :ttl default-ttl
-     (expired #(info "Expired" %))
-     (where (not (service #"^riemann "))
+     (let [memory-and-load-summary
+           (where (or (service #"^load/load/")
+                      (service #"^memory/"))
+                  index
+                  (by :service
+                      (coalesce
+                       (smap folds/sum
+                             (with-but-collectd {:tags ["summary"]
+                                                 :ttl default-ttl}
+                               index)))))
 
-            (where (or (service #"^load/load/")
-                       (service #"^memory/"))
-                   index
-                   (by :service
-                       (coalesce
+           total-network-traffic
+           (where (service #"^interface-.*/if_octets/[tr]x$")
+                  index
+                  (coalesce
+                   (smap folds/sum
+                         (with-but-collectd {:service "total network traffic"
+                                             :tags ["summary"]
+                                             :ttl default-ttl
+                                             :state "ok"}
+                           index))))
+
+           distinct-hosts
+           (where (not (tagged "summary"))
+                  (with :service "distinct hosts"
+                        (coalesce
+                         (smap folds/count
+                               (with-but-collectd {:tags ["summary"]
+                                                   :ttl default-ttl
+                                                   :state nil}
+
+                                 reinject)))))
+
+           per-host-summaries
+           (by [:host]
+               (project [(service "cpu-average/cpu-system")
+                         (service "cpu-average/cpu-user")]
                         (smap folds/sum
-                              (with-but-collectd {:tags ["summary"]
-                                                  :ttl default-ttl}
-                                index)))))
+                              (with {:service "cpu-average/cpu-used"
+                                     :ttl default-ttl}
+                                    index)))
 
-            (where (service #"^interface-.*/if_octets/[tr]x$")
-                   index
-                   (coalesce
-                    (smap folds/sum
-                          (with-but-collectd {:service "total network traffic"
-                                              :tags ["summary"]
-                                              :ttl default-ttl
-                                              :state "ok"}
-                            index))))
+               (project [(service "memory/memory-used")
+                         (service "memory/memory-free")
+                         (service "memory/memory-cached")
+                         (service "memory/memory-buffered")]
+                        (smap folds/sum
+                              (with {:service "memory/memory-total"
+                                     :ttl default-ttl
+                                     :tags ["summary"]}
+                                    reinject)))
 
-            (where (not (tagged "summary"))
-                   (with :service "distinct hosts"
-                         (coalesce
-                          (smap folds/count
-                                (with-but-collectd {:tags ["summary"]
-                                                    :ttl default-ttl
-                                                    :state nil}
+               (project [(service "memory/memory-used")
+                         (service "memory/memory-total")]
+                        (smap folds/quotient
+                              (with {:service "memory/percent-used"
+                                     :ttl default-ttl}
+                                    (float-to-percent index)))))
 
-                                  reinject)))))
+           clock-skew
+           (where (not (nil? host))
+                  (clock-skew
+                   (with-but-collectd {:service "clock skew"
+                                       :tags ["internal"]}
+                     (rate 5 index))))])
 
-            (by [:host]
-                (project [(service "cpu-average/cpu-system")
-                          (service "cpu-average/cpu-user")]
-                         (smap folds/sum
-                               (with {:service "cpu-average/cpu-used"
-                                      :ttl default-ttl}
-                                     index)))
-
-                (project [(service "memory/memory-used")
-                          (service "memory/memory-free")
-                          (service "memory/memory-cached")
-                          (service "memory/memory-buffered")]
-                         (smap folds/sum
-                               (with {:service "memory/memory-total"
-                                      :ttl default-ttl
-                                      :tags ["summary"]}
-                                     reinject)))
-
-                (project [(service "memory/memory-used")
-                          (service "memory/memory-total")]
-                         (smap folds/quotient
-                               (with {:service "memory/percent-used"
-                                      :ttl default-ttl}
-                                     (float-to-percent index)))))
-
-            (where (not (nil? host))
-                   (clock-skew
-                    (with-but-collectd {:service "clock skew"
-                                        :tags ["internal"]}
-                      (rate 5 index))))
-            index))))
+     (where (not (state "expired"))
+            memory-and-load-summary
+            total-network-traffic
+            distinct-hosts
+            per-host-summaries
+            clock-skew
+            index)
+     (expired #(info "Expired" %)))))
