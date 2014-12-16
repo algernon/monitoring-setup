@@ -93,13 +93,13 @@
                   (clock-skew
                    (with-but-collectd {:service "clock skew"
                                        :tags ["internal"]}
-                     (rate 5 index))))])
+                     (rate 5 index))))]
 
-     (where (not (state "expired"))
-            memory-and-load-summary
-            total-network-traffic
-            distinct-hosts
-            per-host-summaries
-            clock-skew
-            index)
+       (where (not (state "expired"))
+              memory-and-load-summary
+              total-network-traffic
+              distinct-hosts
+              per-host-summaries
+              clock-skew
+              index))
      (expired #(info "Expired" %)))))
