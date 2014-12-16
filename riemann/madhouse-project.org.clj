@@ -51,6 +51,18 @@
                                              :state "ok"}
                            index))))
 
+           riak-cluster-stats
+           (where (and (service #"^curl_json-riak/gauge-")
+                       (tagged "collectd"))
+                  index
+                  (by [:service]
+                      (coalesce
+                       (smap folds/sum
+                             (with-but-collectd {:tags ["summary"]
+                                                 :state "ok"}
+                               (adjust [:service str "/cluster"]
+                                       index))))))
+
            distinct-hosts
            (where (not (tagged "summary"))
                   (with :service "distinct hosts"
@@ -100,6 +112,7 @@
               total-network-traffic
               distinct-hosts
               per-host-summaries
+              riak-cluster-stats
               clock-skew
               index))
      (expired #(info "Expired" %)))))
