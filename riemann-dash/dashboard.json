@@ -8,18 +8,18 @@
         "type": "Balloon",
         "weight": 1,
         "id": "e75428c8873ba25e8d61ca2e9e67ead6b8739dd3",
-        "version": 50,
+        "version": 51,
         "child": {
           "type": "VStack",
           "weight": 1,
           "id": "fb909ab87f3a3be73956c792d7bebdca0d0c4669",
-          "version": 50,
+          "version": 51,
           "children": [
             {
               "type": "HStack",
               "weight": 1,
               "id": "1e2dd3940959d463326a0cb8390fa04e53d0ec30",
-              "version": 29,
+              "version": 30,
               "children": [
                 {
                   "type": "VStack",
@@ -93,7 +93,7 @@
                   "type": "VStack",
                   "weight": 1,
                   "id": "b835659a75bf27d2eeb9464d4026c9d5406fd28f",
-                  "version": 13,
+                  "version": 14,
                   "children": [
                     {
                       "type": "Grid",
@@ -112,9 +112,9 @@
                       "type": "Grid",
                       "weight": 1,
                       "id": "62f666ee840503b51a368f5ee91ce542df7b34d2",
-                      "version": 7,
+                      "version": 8,
                       "title": "Disk",
-                      "query": "service =~ \"df-%/percent_bytes-free\" and not (service =~ \"df-boot/%\" or service =~ \"%docker%\")",
+                      "query": "service =~ \"df-%/percent_bytes-free\" and not (service =~ \"df-boot/%\" or service =~ \"%docker%\" or service =~ \"df-var-log%\")",
                       "max": "100",
                       "rows": "host",
                       "cols": "service",
@@ -334,97 +334,97 @@
           ]
         }
       },
-      "id":"8a997a19dd2a8341f3a97a4c2051fea172d5e5e3"
+      "id": "8a997a19dd2a8341f3a97a4c2051fea172d5e5e3"
     },
     {
-      "name":"Riak",
-      "view":{
-        "type":"Balloon",
-        "weight":1,
-        "id":"45715d38a0c5128e3bb8793df95aceb12fb10bf7",
-        "version":13,
-        "child":{
-          "type":"VStack",
-          "weight":1,
-          "id":"8895246b0ff65f7288dfdf39b8e0ebd36ea5aa1d",
-          "version":13,
-          "children":[
+      "name": "Riak",
+      "view": {
+        "type": "Balloon",
+        "weight": 1,
+        "id": "45715d38a0c5128e3bb8793df95aceb12fb10bf7",
+        "version": 13,
+        "child": {
+          "type": "VStack",
+          "weight": 1,
+          "id": "8895246b0ff65f7288dfdf39b8e0ebd36ea5aa1d",
+          "version": 13,
+          "children": [
             {
-              "type":"HStack",
-              "weight":1,
-              "id":"d7cfecd554b51aa0f87b3760ce1bed0e3fadf671",
-              "version":5,
-              "children":[
+              "type": "HStack",
+              "weight": 1,
+              "id": "d7cfecd554b51aa0f87b3760ce1bed0e3fadf671",
+              "version": 5,
+              "children": [
                 {
-                  "type":"Grid",
-                  "weight":1,
-                  "id":"b3199b78b30d046d9ad9efa8dd596c44c18cb57f",
-                  "version":3,
-                  "title":"Node stats (total)",
-                  "query":"service =~ \"curl_json-riak/counter-%\"",
-                  "max":"",
-                  "rows":"service",
-                  "cols":"host",
-                  "row_sort":"lexical",
-                  "col_sort":"lexical"
+                  "type": "Grid",
+                  "weight": 1,
+                  "id": "b3199b78b30d046d9ad9efa8dd596c44c18cb57f",
+                  "version": 3,
+                  "title": "Node stats (total)",
+                  "query": "service =~ \"curl_json-riak/counter-%\"",
+                  "max": "",
+                  "rows": "service",
+                  "cols": "host",
+                  "row_sort": "lexical",
+                  "col_sort": "lexical"
                 },
                 {
-                  "type":"Grid",
-                  "weight":1,
-                  "id":"8d80c2d8508e40bc48c9102466e59b455b6b4a9a",
-                  "version":3,
-                  "title":"Node stats (current)",
-                  "query":"service =~ \"curl_json-riak/gauge-%\" and tagged \"collectd\"",
-                  "max":"",
-                  "rows":"service",
-                  "cols":"host",
-                  "row_sort":"lexical",
-                  "col_sort":"lexical"
+                  "type": "Grid",
+                  "weight": 1,
+                  "id": "8d80c2d8508e40bc48c9102466e59b455b6b4a9a",
+                  "version": 3,
+                  "title": "Node stats (current)",
+                  "query": "service =~ \"curl_json-riak/gauge-%\" and tagged \"collectd\"",
+                  "max": "",
+                  "rows": "service",
+                  "cols": "host",
+                  "row_sort": "lexical",
+                  "col_sort": "lexical"
                 }
               ]
             },
             {
-              "type":"HStack",
-              "weight":1,
-              "id":"27be792127fc751b16099c2a7e0d909e0cbb15a0",
-              "version":7,
-              "children":[
+              "type": "HStack",
+              "weight": 1,
+              "id": "27be792127fc751b16099c2a7e0d909e0cbb15a0",
+              "version": 7,
+              "children": [
                 {
-                  "type":"TimeSeries",
-                  "weight":1,
-                  "id":"2b98ba0ac0cf4dd8cbc3d3592218c6cdda8854d4",
-                  "version":2,
-                  "title":"Set puts (cluster)",
-                  "delay":"",
-                  "speed":"",
-                  "query":"service = \"curl_json-riak/gauge-node_puts_set/cluster\"",
-                  "opacity":"",
-                  "lineWidth":""
+                  "type": "TimeSeries",
+                  "weight": 1,
+                  "id": "2b98ba0ac0cf4dd8cbc3d3592218c6cdda8854d4",
+                  "version": 2,
+                  "title": "Set puts (cluster)",
+                  "delay": "",
+                  "speed": "",
+                  "query": "service = \"curl_json-riak/gauge-node_puts_set/cluster\"",
+                  "opacity": "",
+                  "lineWidth": ""
                 },
                 {
-                  "type":"TimeSeries",
-                  "weight":1,
-                  "id":"d3d3eb1857f4f1c4c7095a61362e2c7564db96ae",
-                  "version":5,
-                  "title":"Set puts (node)",
-                  "delay":"",
-                  "speed":"",
-                  "query":"service = \"curl_json-riak/gauge-node_puts_set\"",
-                  "opacity":"",
-                  "lineWidth":""
+                  "type": "TimeSeries",
+                  "weight": 1,
+                  "id": "d3d3eb1857f4f1c4c7095a61362e2c7564db96ae",
+                  "version": 5,
+                  "title": "Set puts (node)",
+                  "delay": "",
+                  "speed": "",
+                  "query": "service = \"curl_json-riak/gauge-node_puts_set\"",
+                  "opacity": "",
+                  "lineWidth": ""
                 }
               ]
             },
             {
-              "type":"View",
-              "weight":1,
-              "id":"50a0cba57fb43b046bac2d2c144f021a0acc4757",
-              "version":0
+              "type": "View",
+              "weight": 1,
+              "id": "50a0cba57fb43b046bac2d2c144f021a0acc4757",
+              "version": 0
             }
           ]
         }
       },
-      "id":"d6e455731073c5b5f096af9bf07c0c75b9502c55"
+      "id": "d6e455731073c5b5f096af9bf07c0c75b9502c55"
     }
   ]
 }
