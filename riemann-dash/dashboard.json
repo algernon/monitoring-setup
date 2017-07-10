@@ -8,12 +8,12 @@
         "type": "Balloon",
         "weight": 1,
         "id": "e75428c8873ba25e8d61ca2e9e67ead6b8739dd3",
-        "version": 52,
+        "version": 65,
         "child": {
           "type": "VStack",
           "weight": 1,
           "id": "fb909ab87f3a3be73956c792d7bebdca0d0c4669",
-          "version": 52,
+          "version": 65,
           "children": [
             {
               "type": "HStack",
@@ -129,27 +129,46 @@
               "type": "HStack",
               "weight": 1,
               "id": "ed454080589593d9054f8a923cd6ec384b521f70",
-              "version": 22,
+              "version": 35,
               "children": [
                 {
                   "type": "VStack",
                   "weight": 1,
                   "id": "606aa9ab8a10fe546627ad96be3fe016eac4840c",
-                  "version": 9,
+                  "version": 21,
                   "children": [
                     {
-                      "type": "Grid",
+                      "type": "HStack",
                       "weight": 1,
-                      "id": "36d456a789a2cf6e33ecdb24e99eed8aee536374",
-                      "version": 7,
-                      "title": "Mastodon",
-                      "query": "service =~ \"mastodon%\"",
-                      "max": "",
-                      "rows": "service",
-                      "cols": "host",
-                      "row_sort": "lexical",
-                      "col_sort": "lexical",
-                      "description": ""
+                      "id": "6d8dac0817ee3c8a1318f6441e43f4fddc96b3f1",
+                      "version": 10,
+                      "children": [
+                        {
+                          "type": "Title",
+                          "weight": 1,
+                          "id": "36d456a789a2cf6e33ecdb24e99eed8aee536374",
+                          "version": 12,
+                          "title": "Mastodon"
+                        },
+                        {
+                          "type": "Gauge",
+                          "weight": 1,
+                          "id": "5440696bcebbad9f49d1718ba4c15bf848aee972",
+                          "version": 5,
+                          "title": "Mastodon # Connected domains",
+                          "query": "service = \"mastodon/domain-count\"",
+                          "commaSeparateThousands": "on"
+                        },
+                        {
+                          "type": "Gauge",
+                          "weight": 1,
+                          "id": "07aafe10fc08fb5018ea5182d8b56d4912158178",
+                          "version": 2,
+                          "title": "Mastodon # toots",
+                          "query": "service = \"mastodon/status-count\"",
+                          "commaSeparateThousands": "on"
+                        }
+                      ]
                     },
                     {
                       "type": "HStack",
@@ -217,18 +236,40 @@
                   ]
                 },
                 {
-                  "type": "Flot",
+                  "type": "VStack",
                   "weight": 1,
-                  "id": "cfd5b5f863d9e899731f9d3dcff22fbbe65b66f5",
-                  "version": 2,
-                  "title": "Load over time",
-                  "query": "service =~ \"load/load/midterm\" and not tagged \"summary\"",
-                  "min": null,
-                  "max": null,
-                  "timeRange": 900,
-                  "graphType": "line",
-                  "stackMode": "false",
-                  "tooltips": "metric"
+                  "id": "a208e224990670f1896961ee6102dbdb74151317",
+                  "version": 1,
+                  "children": [
+                    {
+                      "type": "Flot",
+                      "weight": 1,
+                      "id": "8d39f926580067cbf93a168bfa9446c66aa56101",
+                      "version": 1,
+                      "title": "Disk over time",
+                      "query": "service =~ \"df-%/percent_bytes-free\" and not (service =~ \"df-boot/%\" or service =~ \"%docker%\" or service =~ \"df-var-log%\")",
+                      "min": null,
+                      "max": "100",
+                      "timeRange": 300,
+                      "graphType": "line",
+                      "stackMode": "false",
+                      "tooltips": "metric"
+                    },
+                    {
+                      "type": "Flot",
+                      "weight": 1,
+                      "id": "cfd5b5f863d9e899731f9d3dcff22fbbe65b66f5",
+                      "version": 2,
+                      "title": "Load over time",
+                      "query": "service =~ \"load/load/midterm\" and not tagged \"summary\"",
+                      "min": null,
+                      "max": null,
+                      "timeRange": 900,
+                      "graphType": "line",
+                      "stackMode": "false",
+                      "tooltips": "metric"
+                    }
+                  ]
                 },
                 {
                   "type": "Flot",
