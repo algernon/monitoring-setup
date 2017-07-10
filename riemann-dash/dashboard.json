@@ -8,12 +8,12 @@
         "type": "Balloon",
         "weight": 1,
         "id": "e75428c8873ba25e8d61ca2e9e67ead6b8739dd3",
-        "version": 51,
+        "version": 52,
         "child": {
           "type": "VStack",
           "weight": 1,
           "id": "fb909ab87f3a3be73956c792d7bebdca0d0c4669",
-          "version": 51,
+          "version": 52,
           "children": [
             {
               "type": "HStack",
@@ -129,26 +129,27 @@
               "type": "HStack",
               "weight": 1,
               "id": "ed454080589593d9054f8a923cd6ec384b521f70",
-              "version": 21,
+              "version": 22,
               "children": [
                 {
                   "type": "VStack",
                   "weight": 1,
                   "id": "606aa9ab8a10fe546627ad96be3fe016eac4840c",
-                  "version": 8,
+                  "version": 9,
                   "children": [
                     {
                       "type": "Grid",
                       "weight": 1,
                       "id": "36d456a789a2cf6e33ecdb24e99eed8aee536374",
-                      "version": 6,
-                      "title": "sshd",
-                      "query": "service =~ \"tail-auth/counter-sshd-%\"",
+                      "version": 7,
+                      "title": "Mastodon",
+                      "query": "service =~ \"mastodon%\"",
                       "max": "",
                       "rows": "service",
                       "cols": "host",
                       "row_sort": "lexical",
-                      "col_sort": "lexical"
+                      "col_sort": "lexical",
+                      "description": ""
                     },
                     {
                       "type": "HStack",
@@ -222,10 +223,12 @@
                   "version": 2,
                   "title": "Load over time",
                   "query": "service =~ \"load/load/midterm\" and not tagged \"summary\"",
+                  "min": null,
                   "max": null,
                   "timeRange": 900,
                   "graphType": "line",
-                  "stackMode": "false"
+                  "stackMode": "false",
+                  "tooltips": "metric"
                 },
                 {
                   "type": "Flot",
@@ -234,10 +237,12 @@
                   "version": 6,
                   "title": "Memory over time",
                   "query": "service = \"memory/percent-used\"",
+                  "min": null,
                   "max": "100",
                   "timeRange": 900,
                   "graphType": "line",
-                  "stackMode": "false"
+                  "stackMode": "false",
+                  "tooltips": "metric"
                 }
               ]
             }
@@ -252,31 +257,32 @@
         "type": "Balloon",
         "weight": 1,
         "id": "6219a8464c28e04dc4ea9cd0844d5b08eebab101",
-        "version": 22,
+        "version": 25,
         "child": {
           "type": "VStack",
           "weight": 1,
           "id": "1b27532b9e7add41f8a5e4387735b55b54c373c3",
-          "version": 22,
+          "version": 25,
           "children": [
             {
               "type": "HStack",
               "weight": 2,
               "id": "3f2622eda71e24f3b93251cc03455e269da40121",
-              "version": 5,
+              "version": 6,
               "children": [
                 {
                   "type": "Grid",
                   "weight": 1,
                   "id": "daf5a0aab5f3a83315686892e554f409080301df",
-                  "version": 10,
+                  "version": 11,
                   "title": "Network (servers)",
-                  "query": "service =~ \"interface-%/if_octets/%\" and not service =~ \"%docker%\" and metric > 0 and not service =~ \"%wlan%\"",
+                  "query": "service =~ \"interface-%/if_octets/%\" and not service =~ \"%docker%\" and metric > 0 and not service =~ \"%wlan%\" and not service =~ \"%veth%\" and not service =~ \"%-br-%\"",
                   "max": "",
                   "rows": "host",
                   "cols": "service",
                   "row_sort": "lexical",
-                  "col_sort": "lexical"
+                  "col_sort": "lexical",
+                  "description": ""
                 },
                 {
                   "type": "Grid",
@@ -297,31 +303,35 @@
               "type": "HStack",
               "weight": 4,
               "id": "92f275902def80392862e915e8824fd1aa40ea12",
-              "version": 7,
+              "version": 9,
               "children": [
                 {
                   "type": "Flot",
                   "weight": 1,
                   "id": "361d4f8c465e75fbcd4eaafa0a00e819096ba2ba",
-                  "version": 6,
+                  "version": 7,
                   "title": "Network Received",
-                  "query": "service =~ \"interface-%/if_octets/rx\" and not service =~ \"%docker%\" and metric > 0",
+                  "query": "service =~ \"interface-%/if_octets/rx\" and not service =~ \"%docker%\" and metric > 0 and not service =~ \"%veth%\" and not service =~ \"%-br-%\"",
+                  "min": null,
                   "max": null,
                   "timeRange": 900,
                   "graphType": "line",
-                  "stackMode": "false"
+                  "stackMode": "false",
+                  "tooltips": "metric"
                 },
                 {
                   "type": "Flot",
                   "weight": 1,
                   "id": "b9ab9ecce4199873a12b4b676a2ec5cc1d517ac9",
-                  "version": 4,
+                  "version": 5,
                   "title": "Network Transmitted",
-                  "query": "service =~ \"interface-%/if_octets/tx\" and not service =~ \"%docker%\" and metric > 0",
+                  "query": "service =~ \"interface-%/if_octets/tx\" and not service =~ \"%docker%\" and metric > 0 and not service =~ \"%veth%\" and not service =~ \"%-br-%\"",
+                  "min": null,
                   "max": null,
                   "timeRange": 900,
                   "graphType": "line",
-                  "stackMode": "false"
+                  "stackMode": "false",
+                  "tooltips": "metric"
                 }
               ]
             },
