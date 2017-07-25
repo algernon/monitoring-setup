@@ -8,18 +8,18 @@
         "type": "Balloon",
         "weight": 1,
         "id": "e75428c8873ba25e8d61ca2e9e67ead6b8739dd3",
-        "version": 67,
+        "version": 70,
         "child": {
           "type": "VStack",
           "weight": 1,
           "id": "fb909ab87f3a3be73956c792d7bebdca0d0c4669",
-          "version": 67,
+          "version": 70,
           "children": [
             {
               "type": "HStack",
               "weight": 1,
               "id": "1e2dd3940959d463326a0cb8390fa04e53d0ec30",
-              "version": 30,
+              "version": 32,
               "children": [
                 {
                   "type": "VStack",
@@ -93,7 +93,7 @@
                   "type": "VStack",
                   "weight": 1,
                   "id": "b835659a75bf27d2eeb9464d4026c9d5406fd28f",
-                  "version": 14,
+                  "version": 16,
                   "children": [
                     {
                       "type": "Grid",
@@ -112,14 +112,15 @@
                       "type": "Grid",
                       "weight": 1,
                       "id": "62f666ee840503b51a368f5ee91ce542df7b34d2",
-                      "version": 8,
+                      "version": 10,
                       "title": "Disk",
-                      "query": "service =~ \"df-%/percent_bytes-free\" and not (service =~ \"df-boot/%\" or service =~ \"%docker%\" or service =~ \"df-var-log%\")",
+                      "query": "service =~ \"df-%/percent_bytes-used\" and not (service =~ \"df-boot/%\" or service =~ \"%docker%\" or service =~ \"df-var-log%\")",
                       "max": "100",
                       "rows": "host",
                       "cols": "service",
                       "row_sort": "lexical",
-                      "col_sort": "lexical"
+                      "col_sort": "lexical",
+                      "description": ""
                     }
                   ]
                 }
@@ -129,7 +130,7 @@
               "type": "HStack",
               "weight": 1,
               "id": "ed454080589593d9054f8a923cd6ec384b521f70",
-              "version": 37,
+              "version": 38,
               "children": [
                 {
                   "type": "VStack",
@@ -239,15 +240,15 @@
                   "type": "VStack",
                   "weight": 1,
                   "id": "a208e224990670f1896961ee6102dbdb74151317",
-                  "version": 3,
+                  "version": 4,
                   "children": [
                     {
                       "type": "Flot",
                       "weight": 1,
                       "id": "8d39f926580067cbf93a168bfa9446c66aa56101",
-                      "version": 3,
-                      "title": "Disk free % over time",
-                      "query": "service =~ \"df-%/percent_bytes-free\" and not (service =~ \"df-boot/%\" or service =~ \"%docker%\" or service =~ \"df-var-log%\")",
+                      "version": 4,
+                      "title": "Disk used % over time",
+                      "query": "service =~ \"df-%/percent_bytes-used\" and not (service =~ \"df-boot/%\" or service =~ \"%docker%\" or service =~ \"df-var-log%\")",
                       "min": "0",
                       "max": "100",
                       "timeRange": 86400,
