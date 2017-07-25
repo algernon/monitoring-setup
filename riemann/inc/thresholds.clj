@@ -1,4 +1,4 @@
-;; Copyright (C) 2014  Gergely Nagy <algernon@madhouse-project.org>
+;; Copyright (C) 2014, 2017  Gergely Nagy <algernon@madhouse-project.org>
 ;;
 ;; This work is free. You can redistribute it and/or modify it under the
 ;; terms of the Do What The Fuck You Want To Public License, Version 2,
@@ -40,7 +40,8 @@
 
    "uptime/uptime" {:warning 1 :critical 0 :invert true}
 
-   "df-root/percent_bytes-free" {:warning 10 :critical 6 :invert true}
+   "df-root/percent_bytes-free" {:warning 20 :critical 10 :invert true}
+   "df-root/percent_bytes-used" {:warning 80 :critical 90}
 
    "interface-wlan0/if_octets/rx" {:warning 768 :critical 1024}
    "interface-wlan0/if_octets/tx" {:warning 768 :critical 1024}
